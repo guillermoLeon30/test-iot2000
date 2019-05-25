@@ -6,4 +6,5 @@ module.exports = () => {
   const jobsSchudele = new schedule();
 
   jobsSchudele.jobTemperatura();
+  jobsSchudele.jobStateShadow();
 }

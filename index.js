@@ -1,10 +1,7 @@
 'use strict';
 
-//const kernel = require('./app/console/kernel');
+console.log('iniciando...');
 
-console.log('inicio');
+const kernel = require('./app/console/kernel');
 
-
-//console.log(kernel);
-
-//kernel();
+kernel();

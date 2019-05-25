@@ -14,16 +14,30 @@
 
 const nodeSchedule = require('node-schedule');
 
-const sendData = require('../jobs/sendData');
+const sendDataDevice = require('../jobs/sendToDeviceData');
 
 const schedule = class {
   constructor () {
-    this.jobSendData = new sendData();
+    this.sendDataDevice = new sendDataDevice();
   }
 
   jobTemperatura () {
-    nodeSchedule.scheduleJob('3 * * * * *', () => {
-      this.jobSendData.leerYenviarTemperatura();
+    console.log('Iniciando job temperatura');
+    
+    nodeSchedule.scheduleJob('*/3 * * * * *', () => {
+      let temperatura = this.sendDataDevice.sendTemperatureData(false);
+      // let time = new Date().toTimeString();
+      
+      // console.log(`Tiempo: ${time}, Temp: ${temperatura}`);
+    });
+  }
+
+  jobStateShadow () {
+    console.log('Iniciando job Shadow');
+
+    nodeSchedule.scheduleJob('*/2 * * * * *', () => {
+      let data = this.sendDataDevice.sendStateShadow();
+      // if (data) console.log(data);
     });
   }
 }
