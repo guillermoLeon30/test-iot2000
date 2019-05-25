@@ -1,7 +1,8 @@
-const config = require('../certs-iot/config')
 const moment = require('moment')
 const uniqid = require('uniqid')
 const devices = require('aws-iot-device-sdk').device
+
+const config = require('../../config/mqtt-iot')
 
 const iotDevice = class {
   constructor () {
